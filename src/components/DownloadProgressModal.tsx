@@ -49,18 +49,18 @@ export const DownloadProgressModal: React.FC<DownloadProgressModalProps> = ({
       if (appInfo.downloadUrl && appInfo.downloadUrl !== '#') {
         const link = document.createElement('a');
         link.href = appInfo.downloadUrl;
-        link.download = `JaiPlay_${appInfo.version.replace(/\s+/g, '_')}.apk`;
+        link.download = `ZabPlay_${appInfo.version.replace(/\s+/g, '_')}.apk`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       } else {
-        // Generate a valid text/blob download representing the Jai Play APK installer package
-        const apkContent = `Jai Play HD Video Player Package (${appInfo.version})\nPackage Name: ${appInfo.packageName}\nDeveloper: ${appInfo.developer}\nChecksum: SHA256-a9f87c6b5e4d3c2b1a\nVerified Safe Installation File.`;
+        // Generate a valid text/blob download representing the ZabPlay APK installer package
+        const apkContent = `ZabPlay HD Video Player Package (${appInfo.version})\nPackage Name: ${appInfo.packageName}\nDeveloper: ${appInfo.developer}\nChecksum: SHA256-a9f87c6b5e4d3c2b1a\nVerified Safe Installation File.`;
         const blob = new Blob([apkContent], { type: 'application/vnd.android.package-archive' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `JaiPlay_${appInfo.version.replace(/\s+/g, '_')}.apk`;
+        link.download = `ZabPlay_${appInfo.version.replace(/\s+/g, '_')}.apk`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -96,8 +96,8 @@ export const DownloadProgressModal: React.FC<DownloadProgressModalProps> = ({
 
         <h3 className="text-xl font-extrabold text-white mb-1">
           {!downloadComplete
-            ? (lang === 'hi' ? 'जै प्ले APK डाउनलोड हो रहा है...' : 'Downloading Jai Play APK...')
-            : (lang === 'hi' ? 'डाउनलोड पूरा हो गया!' : 'Download Complete!')}
+            ? (lang === 'hi' ? 'Downloading ZabPlay APK...' : 'Downloading ZabPlay APK...')
+            : (lang === 'hi' ? 'Download Complete!' : 'Download Complete!')}
         </h3>
 
         <p className="text-xs text-slate-400 mb-6">
@@ -108,7 +108,7 @@ export const DownloadProgressModal: React.FC<DownloadProgressModalProps> = ({
         <div className="space-y-2 mb-6">
           <div className="flex justify-between text-xs font-bold">
             <span className="text-slate-300">
-              {!downloadComplete ? `${progress}% ${lang === 'hi' ? 'पूरा हुआ' : 'Completed'}` : '100% Ready'}
+              {!downloadComplete ? `${progress}% ${lang === 'hi' ? 'Completed' : 'Completed'}` : '100% Ready'}
             </span>
             <span className="text-blue-400">{!downloadComplete ? speed : 'Verified'}</span>
           </div>
@@ -135,7 +135,7 @@ export const DownloadProgressModal: React.FC<DownloadProgressModalProps> = ({
               <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <span>
                 {lang === 'hi'
-                  ? 'फाइल डाउनलोड हो गई है! अपने फोन के नोटिफिकेशन या Downloads फोल्डर से इनस्टॉल करें।'
+                  ? 'APK saved to your downloads folder! Tap the file to install now.'
                   : 'APK saved to your downloads folder! Tap the file to install now.'}
               </span>
             </div>
@@ -144,13 +144,13 @@ export const DownloadProgressModal: React.FC<DownloadProgressModalProps> = ({
               onClick={onClose}
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl shadow-lg transition cursor-pointer"
             >
-              {lang === 'hi' ? 'ठीक है (Done)' : 'Close'}
+              {lang === 'hi' ? 'Close' : 'Close'}
             </button>
           </div>
         ) : (
           <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] text-slate-400">
             {lang === 'hi'
-              ? 'कृपया विंडो बंद न करें, डाउनलोड स्वतः शुरू हो रहा है...'
+              ? 'Please stay on this page while download completes...'
               : 'Please stay on this page while download completes...'}
           </div>
         )}

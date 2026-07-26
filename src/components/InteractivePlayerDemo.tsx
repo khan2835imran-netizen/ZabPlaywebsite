@@ -45,15 +45,15 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
         <div className="text-center max-w-3xl mx-auto mb-8">
           <div className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>{lang === 'hi' ? 'वेबसाइट पर ही चलाकर देखें' : 'Try Live Feature Test Drive'}</span>
+            <span>{lang === 'hi' ? 'Try Live Feature Test Drive' : 'Try Live Feature Test Drive'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            {lang === 'hi' ? 'जै प्ले वीडियो प्लेयर - लाइव डेमो' : 'Jai Play HD Player - Interactive Demo'}
+            {lang === 'hi' ? 'ZabPlay Player - Live Demo' : 'ZabPlay HD Player - Interactive Demo'}
           </h2>
           <p className="text-slate-400 text-sm mt-2">
             {lang === 'hi'
-              ? '200% वॉल्यूम बूस्ट, सबटाइटल, फ्लोटिंग PIP मोड और इक्वलाइज़र का लाइव अनुभव लें!'
-              : 'Test Jai Play features below: 200% sound boost, live subtitle sync, equalizer presets, and PIP window.'}
+              ? 'Test ZabPlay features below: 200% sound boost, live subtitle sync, equalizer presets, and PIP window.'
+              : 'Test ZabPlay features below: 200% sound boost, live subtitle sync, equalizer presets, and PIP window.'}
           </p>
         </div>
 
@@ -83,8 +83,8 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
                 {subtitle !== 'off' && (
                   <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-black/80 text-yellow-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-md border border-yellow-500/30 text-center max-w-[90%] shadow-lg">
                     {subtitle === 'hi'
-                      ? 'जै प्ले: 4K अल्ट्रा एचडी प्लेबैक और सबटाइटल ऑटो सिंक एक्टिवेटेड'
-                      : 'Jai Play: 4K Ultra HD playback with live hardware acceleration'}
+                      ? 'ZabPlay: 4K Ultra HD playback & subtitle auto sync activated'
+                      : 'ZabPlay: 4K Ultra HD playback with live hardware acceleration'}
                   </div>
                 )}
 
@@ -92,7 +92,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
                 <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-xs text-white">
                   <div className="flex items-center gap-2 bg-slate-950/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-800">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="font-bold">Jai Play HW+ 4K</span>
+                    <span className="font-bold">ZabPlay HW+ 4K</span>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -188,7 +188,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
             <div className="lg:col-span-4 bg-slate-950/80 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-5">
               <h3 className="text-sm font-bold text-white flex items-center gap-2 pb-2 border-b border-slate-800">
                 <Sliders className="w-4 h-4 text-blue-400" />
-                <span>{lang === 'hi' ? 'जै प्ले फीचर्स कंट्रोल टूलकिट' : 'Jai Play Feature Controls'}</span>
+                <span>{lang === 'hi' ? 'ZabPlay Feature Controls' : 'ZabPlay Feature Controls'}</span>
               </h3>
 
               {/* Volume Booster Slider */}
@@ -196,7 +196,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
                 <div className="flex items-center justify-between text-xs font-medium text-slate-300 mb-1.5">
                   <span className="flex items-center gap-1">
                     <Volume2 className="w-3.5 h-3.5 text-indigo-400" />
-                    {lang === 'hi' ? '200% वॉल्यूम बूस्टर' : 'Volume Amplifier (Up to 200%)'}
+                    {lang === 'hi' ? 'Volume Amplifier (Up to 200%)' : 'Volume Amplifier (Up to 200%)'}
                   </span>
                   <span className="text-purple-400 font-bold">{volume}%</span>
                 </div>
@@ -219,7 +219,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1.5">
                   <Subtitles className="w-3.5 h-3.5 inline mr-1 text-blue-400" />
-                  {lang === 'hi' ? 'सबटाइटल भाषा सिंक' : 'Live Subtitle Sync Language'}
+                  {lang === 'hi' ? 'Live Subtitle Sync Language' : 'Live Subtitle Sync Language'}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   <button
@@ -236,7 +236,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
                       subtitle === 'hi' ? 'bg-blue-600 text-white border-blue-500' : 'bg-slate-900 text-slate-400 border-slate-800'
                     }`}
                   >
-                    हिंदी (Hindi)
+                    Hindi
                   </button>
                   <button
                     onClick={() => setSubtitle('en')}
@@ -253,7 +253,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1.5">
                   <Zap className="w-3.5 h-3.5 inline mr-1 text-amber-400" />
-                  {lang === 'hi' ? 'इक्वलाइज़र और 3D बेस बूस्ट प्रीसेट्स' : '10-Band Equalizer Sound Presets'}
+                  {lang === 'hi' ? '10-Band Equalizer Sound Presets' : '10-Band Equalizer Sound Presets'}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {['Bass Boost 200%', '3D Surround', 'Cinematic Rock', 'Vocal Enhancer'].map((preset) => (
@@ -276,7 +276,7 @@ export const InteractivePlayerDemo: React.FC<InteractivePlayerDemoProps> = ({ la
               <div className="bg-slate-900 p-3 rounded-xl border border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                   <Shield className="w-3.5 h-3.5" />
-                  {lang === 'hi' ? 'HW+ एक्सीलरेशन ऑन' : 'HW+ Acceleration ON'}
+                  {lang === 'hi' ? 'HW+ Acceleration ON' : 'HW+ Acceleration ON'}
                 </span>
                 <span className="text-slate-500">60 FPS 4K</span>
               </div>

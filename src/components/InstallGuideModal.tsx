@@ -31,12 +31,12 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             <Smartphone className="w-6 h-6" />
           </div>
           <h3 className="text-xl font-extrabold text-white">
-            {lang === 'hi' ? 'एंड्रॉयड पर APK कैसे इनस्टॉल करें' : 'How to Install APK on Android'}
+            {lang === 'hi' ? 'How to Install APK on Android' : 'How to Install APK on Android'}
           </h3>
           <p className="text-xs text-slate-400 mt-1">
             {lang === 'hi'
-              ? 'जै प्ले (Jai Play) ऐप को सुरक्षित रूप से इनस्टॉल करने के आसान 4 स्टेप्स:'
-              : 'Follow these 4 simple steps to install Jai Play safely on your phone:'}
+              ? 'Follow these 4 simple steps to install ZabPlay safely on your phone:'
+              : 'Follow these 4 simple steps to install ZabPlay safely on your phone:'}
           </p>
         </div>
 
@@ -50,11 +50,11 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             <div>
               <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                 <Download className="w-3.5 h-3.5 text-blue-400" />
-                {lang === 'hi' ? 'APK फाइल डाउनलोड करें' : 'Download APK File'}
+                {lang === 'hi' ? 'Download APK File' : 'Download APK File'}
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'hi'
-                  ? 'ऊपर "डाउनलोड APK" बटन दबाएं और फाइल सेव होने का इंतजार करें।'
+                  ? 'Tap "Download APK" button above and wait for the download to complete.'
                   : 'Tap "Download APK" button above and wait for the download to complete.'}
               </p>
             </div>
@@ -67,12 +67,12 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             <div>
               <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                 <Smartphone className="w-3.5 h-3.5 text-indigo-400" />
-                {lang === 'hi' ? 'डाउनलोड हुई फाइल खोलें' : 'Open Downloaded File'}
+                {lang === 'hi' ? 'Open Downloaded File' : 'Open Downloaded File'}
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'hi'
-                  ? 'ब्राउज़र के डाउनलोड फोल्डर में जाएं और "JaiPlay_v2.4.0.apk" पर टैप करें।'
-                  : 'Go to Downloads and tap "JaiPlay_v2.4.0.apk".'}
+                  ? 'Go to Downloads and tap "ZabPlay_v2.4.0.apk".'
+                  : 'Go to Downloads and tap "ZabPlay_v2.4.0.apk".'}
               </p>
             </div>
           </div>
@@ -84,11 +84,11 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             <div>
               <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                 <Settings className="w-3.5 h-3.5 text-amber-400" />
-                {lang === 'hi' ? 'अननोन सोर्सेज की अनुमति दें' : 'Allow Unknown Sources (If Prompted)'}
+                {lang === 'hi' ? 'Allow Unknown Sources (If Prompted)' : 'Allow Unknown Sources (If Prompted)'}
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'hi'
-                  ? 'यदि फोन पूछे तो Settings > "Allow from this source" पर स्विच ऑन करें।'
+                  ? 'If Chrome or File Manager asks, go to Settings and turn on "Allow from this source".'
                   : 'If Chrome or File Manager asks, go to Settings and turn on "Allow from this source".'}
               </p>
             </div>
@@ -101,12 +101,12 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             <div>
               <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                {lang === 'hi' ? 'इनस्टॉल करें और आनंद लें' : 'Tap Install & Launch'}
+                {lang === 'hi' ? 'Tap Install & Launch' : 'Tap Install & Launch'}
               </h4>
               <p className="text-xs text-slate-400 mt-0.5">
                 {lang === 'hi'
-                  ? '"Install" दबाएं और ऐप खुलने पर 4K वीडियो प्लेयर का मजा लें!'
-                  : 'Click "Install" and enjoy Jai Play HD Video Player!'}
+                  ? 'Click "Install" and enjoy ZabPlay HD Video Player!'
+                  : 'Click "Install" and enjoy ZabPlay HD Video Player!'}
               </p>
             </div>
           </div>
@@ -118,7 +118,7 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
             onClick={onClose}
             className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3 rounded-xl shadow-lg transition cursor-pointer"
           >
-            {lang === 'hi' ? 'समझ आ गया! (Got it)' : 'Understood'}
+            {lang === 'hi' ? 'Understood' : 'Understood'}
           </button>
         </div>
 

@@ -27,15 +27,15 @@ export const FeaturesList: React.FC<FeaturesListProps> = ({ features, lang }) =>
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>{lang === 'hi' ? 'मुख्य विशेषताएं' : 'Key Feature Highlights'}</span>
+            <span>{lang === 'hi' ? 'Key Feature Highlights' : 'Key Feature Highlights'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            {lang === 'hi' ? 'जै प्ले में क्या-क्या खास चीजें हैं?' : 'Why Jai Play is the Ultimate Video Player'}
+            {lang === 'hi' ? 'Why ZabPlay is the Ultimate Video Player' : 'Why ZabPlay is the Ultimate Video Player'}
           </h2>
           <p className="text-slate-400 text-sm mt-2">
             {lang === 'hi'
-              ? '4K अल्ट्रा एचडी प्लेबैक से लेकर 200% वॉल्यूम बूस्ट और प्राइवेट वॉल्ट तक - सब कुछ एक ही ऐप में।'
-              : 'From 4K Ultra HD video playback to 200% sound boost & private vault, Jai Play has it all.'}
+              ? 'From 4K Ultra HD video playback to 200% sound boost & private vault, ZabPlay has it all.'
+              : 'From 4K Ultra HD video playback to 200% sound boost & private vault, ZabPlay has it all.'}
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export const FeaturesList: React.FC<FeaturesListProps> = ({ features, lang }) =>
 
                 <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>{lang === 'hi' ? 'सपोर्टेड' : 'Included Pro Feature'}</span>
+                  <span>{lang === 'hi' ? 'Supported' : 'Included Pro Feature'}</span>
                 </div>
               </div>
             );

@@ -40,11 +40,11 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
               <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                {lang === 'hi' ? 'ऑफिशियल' : 'Official'}
+                {lang === 'hi' ? 'Official' : 'Official'}
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              {lang === 'hi' ? 'ऑल-इन-वन एचडी वीडियो प्लेयर' : 'HD & 4K Video Player App'}
+              {lang === 'hi' ? 'All-in-One HD Video Player' : 'HD & 4K Video Player App'}
             </p>
           </div>
         </div>
@@ -57,17 +57,17 @@ export const Header: React.FC<HeaderProps> = ({
             className="hidden md:flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-blue-400 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 px-3 py-1.5 rounded-lg transition"
           >
             <Play className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
-            {lang === 'hi' ? 'लाइव डेमो' : 'Live Demo'}
+            {lang === 'hi' ? 'Live Demo' : 'Live Demo'}
           </a>
 
           {/* Language Toggle Button */}
           <button
             onClick={onToggleLang}
             className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 hover:text-white hover:border-slate-500 transition cursor-pointer"
-            title="Switch Language / भाषा बदलें"
+            title="Switch Language"
           >
             <Globe className="w-3.5 h-3.5 text-indigo-400" />
-            <span>{lang === 'hi' ? 'English' : 'हिंदी'}</span>
+            <span>{lang === 'hi' ? 'English' : 'Hindi'}</span>
           </button>
 
           {/* Admin Control Trigger */}
@@ -78,11 +78,11 @@ export const Header: React.FC<HeaderProps> = ({
                 ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 hover:bg-amber-500/30'
                 : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
             }`}
-            title={lang === 'hi' ? 'एडमिन पैनल' : 'Admin Panel'}
+            title={lang === 'hi' ? 'Admin Panel' : 'Admin Panel'}
           >
             <Settings className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">
-              {isAdminLoggedIn ? (lang === 'hi' ? 'एडमिन सक्रिय' : 'Admin Active') : (lang === 'hi' ? 'एडमिन मोड' : 'Admin')}
+              {isAdminLoggedIn ? (lang === 'hi' ? 'Admin Active' : 'Admin Active') : (lang === 'hi' ? 'Admin Mode' : 'Admin')}
             </span>
           </button>
 
@@ -93,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <span className="relative px-3.5 py-1.5 transition-all ease-in duration-75 rounded-md flex items-center gap-1.5">
               <Download className="w-3.5 h-3.5 animate-bounce" />
-              <span>{lang === 'hi' ? 'डाउनलोड ऐप' : 'Download APK'}</span>
+              <span>{lang === 'hi' ? 'Download App' : 'Download APK'}</span>
             </span>
           </button>
         </div>

@@ -26,7 +26,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5 text-amber-400" />
                 <h3 className="text-lg font-bold text-white">
-                  {lang === 'hi' ? 'वर्जन 2.4.0 में क्या नया है?' : 'What\'s New in Version 2.4.0'}
+                  {lang === 'hi' ? 'What\'s New in Version 2.4.0' : 'What\'s New in Version 2.4.0'}
                 </h3>
               </div>
               <ul className="space-y-2">
@@ -44,7 +44,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-800">
                 <Info className="w-5 h-5 text-blue-400" />
                 <h3 className="text-xl font-bold text-white">
-                  {lang === 'hi' ? 'जै प्ले (Jai Play) ऐप के बारे में' : 'About Jai Play Video Player App'}
+                  {lang === 'hi' ? 'About ZabPlay Video Player App' : 'About ZabPlay Video Player App'}
                 </h3>
               </div>
 
@@ -54,14 +54,14 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
 
               <div className="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between">
                 <span className="text-xs text-slate-400">
-                  {lang === 'hi' ? 'अंतिम अपडेट:' : 'Last Updated:'} <strong className="text-slate-200">{appInfo.updatedDate}</strong>
+                  {lang === 'hi' ? 'Last Updated:' : 'Last Updated:'} <strong className="text-slate-200">{appInfo.updatedDate}</strong>
                 </span>
                 <button
                   onClick={onShareApp}
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 px-3.5 py-1.5 rounded-xl border border-blue-500/20 transition cursor-pointer"
                 >
                   <Share2 className="w-3.5 h-3.5" />
-                  <span>{lang === 'hi' ? 'दोस्तों के साथ शेयर करें' : 'Share with Friends'}</span>
+                  <span>{lang === 'hi' ? 'Share with Friends' : 'Share with Friends'}</span>
                 </button>
               </div>
             </div>
@@ -73,7 +73,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl sticky top-24 space-y-5">
               <h3 className="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-slate-800">
                 <Layers className="w-5 h-5 text-indigo-400" />
-                <span>{lang === 'hi' ? 'तकनीकी विवरण (Technical Specs)' : 'Technical Specifications'}</span>
+                <span>{lang === 'hi' ? 'Technical Specifications' : 'Technical Specifications'}</span>
               </h3>
 
               <div className="space-y-3 text-xs">
@@ -81,7 +81,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <Code className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'ऐप का नाम' : 'App Name'}
+                    {lang === 'hi' ? 'App Name' : 'App Name'}
                   </span>
                   <span className="font-bold text-white">{appInfo.name}</span>
                 </div>
@@ -89,7 +89,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'वर्जन' : 'Version'}
+                    {lang === 'hi' ? 'Version' : 'Version'}
                   </span>
                   <span className="font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
                     {appInfo.version}
@@ -99,7 +99,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <HardDrive className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'फाइल साइज' : 'APK Size'}
+                    {lang === 'hi' ? 'APK Size' : 'APK Size'}
                   </span>
                   <span className="font-bold text-white">{appInfo.size}</span>
                 </div>
@@ -107,7 +107,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <Smartphone className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'आवश्यक एंड्रॉयड' : 'Min Android'}
+                    {lang === 'hi' ? 'Min Android' : 'Min Android'}
                   </span>
                   <span className="font-bold text-white">6.0 & Higher</span>
                 </div>
@@ -115,7 +115,7 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'डेवलपर' : 'Developer'}
+                    {lang === 'hi' ? 'Developer' : 'Developer'}
                   </span>
                   <span className="font-bold text-slate-200">{appInfo.developer}</span>
                 </div>
@@ -123,20 +123,20 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
                   <span className="text-slate-400 flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                    {lang === 'hi' ? 'अपडेट तिथि' : 'Updated'}
+                    {lang === 'hi' ? 'Updated' : 'Updated'}
                   </span>
                   <span className="font-bold text-slate-200">{appInfo.updatedDate}</span>
                 </div>
 
                 <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-                  <span className="text-slate-400">{lang === 'hi' ? 'पैकेज नाम' : 'Package ID'}</span>
+                  <span className="text-slate-400">{lang === 'hi' ? 'Package ID' : 'Package ID'}</span>
                   <span className="font-mono text-[10px] text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
                     {appInfo.packageName}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">{lang === 'hi' ? 'लाइसेंस' : 'License'}</span>
+                  <span className="text-slate-400">{lang === 'hi' ? 'License' : 'License'}</span>
                   <span className="font-bold text-emerald-400">Free / Pro Features</span>
                 </div>
 
@@ -145,10 +145,10 @@ export const AppSpecsAndDescription: React.FC<AppSpecsAndDescriptionProps> = ({
               {/* Security Audit Badge */}
               <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-3 text-center">
                 <p className="text-[11px] font-semibold text-emerald-300">
-                  ✓ {lang === 'hi' ? 'सुरक्षित और सत्यापित APK डिकोड' : 'Verified Security Audit Passed'}
+                  ✓ {lang === 'hi' ? 'Verified Security Audit Passed' : 'Verified Security Audit Passed'}
                 </p>
                 <p className="text-[10px] text-slate-400 mt-0.5">
-                  {lang === 'hi' ? 'कोई थर्ड-पार्टी एड्स या स्पायवेयर नहीं' : 'Zero Spyware & Clean Installation File'}
+                  {lang === 'hi' ? 'Zero Spyware & Clean Installation File' : 'Zero Spyware & Clean Installation File'}
                 </p>
               </div>
 

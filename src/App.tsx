@@ -5,7 +5,6 @@ import { AppState, AppInfo, ScreenshotCard, UserReview } from './types';
 import { Header } from './components/Header';
 import { HeroDownload } from './components/HeroDownload';
 import { AppScreenshots } from './components/AppScreenshots';
-import { InteractivePlayerDemo } from './components/InteractivePlayerDemo';
 import { FeaturesList } from './components/FeaturesList';
 import { AppSpecsAndDescription } from './components/AppSpecsAndDescription';
 import { ReviewsSection } from './components/ReviewsSection';
@@ -15,7 +14,7 @@ import { QrCodeModal } from './components/QrCodeModal';
 import { AdminPanelModal } from './components/AdminPanelModal';
 import { Footer } from './components/Footer';
 
-const STORAGE_KEY = 'jai_play_app_store_v1';
+const STORAGE_KEY = 'zab_play_app_store_v2';
 
 export default function App() {
   const [lang, setLang] = useState<'en' | 'hi'>('hi'); // Default to Hindi as requested by user
@@ -110,7 +109,7 @@ export default function App() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert(lang === 'hi' ? 'वेबसाइट लिंक कॉपी कर दिया गया है!' : 'App download link copied to clipboard!');
+      alert(lang === 'hi' ? 'Website link copied to clipboard!' : 'App download link copied to clipboard!');
     }
   };
 
@@ -146,9 +145,6 @@ export default function App() {
           onAddScreenshot={handleAddScreenshot}
           onDeleteScreenshot={handleDeleteScreenshot}
         />
-
-        {/* Live Interactive Player Demo Sandbox */}
-        <InteractivePlayerDemo lang={lang} />
 
         {/* Key Features Breakdown Grid */}
         <FeaturesList

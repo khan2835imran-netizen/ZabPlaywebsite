@@ -38,7 +38,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
               </p>
             </div>
             <span className="hidden sm:inline-block text-[11px] font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30 px-2.5 py-1 rounded-full whitespace-nowrap">
-              {lang === 'hi' ? 'नया अपडेट' : 'Latest Release'}
+              {lang === 'hi' ? 'Latest Release' : 'Latest Release'}
             </span>
           </div>
         )}
@@ -69,7 +69,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                 <div className="inline-flex items-center gap-2 mb-2">
                   <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
-                    {lang === 'hi' ? 'ऑल-इन-वन वीडियो प्लेयर' : 'All-in-One Player'}
+                    {lang === 'hi' ? 'All-in-One Video Player' : 'All-in-One Player'}
                   </span>
                   <span className="bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium px-2 py-0.5 rounded-full">
                     {appInfo.version}
@@ -84,7 +84,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                 </p>
 
                 <p className="text-xs text-blue-400 font-semibold mb-5 flex items-center justify-center sm:justify-start gap-1">
-                  <span>{lang === 'hi' ? 'डेवलपर:' : 'Developer:'}</span>
+                  <span>{lang === 'hi' ? 'Developer:' : 'Developer:'}</span>
                   <span className="text-slate-200">{appInfo.developer}</span>
                   <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                 </p>
@@ -97,7 +97,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                       <Star className="w-4 h-4 fill-amber-400 ml-1" />
                     </div>
                     <p className="text-[11px] text-slate-400">
-                      {appInfo.totalRatings.toLocaleString()} {lang === 'hi' ? 'रिव्यूज' : 'reviews'}
+                      {appInfo.totalRatings.toLocaleString()} {lang === 'hi' ? 'reviews' : 'reviews'}
                     </p>
                   </div>
 
@@ -106,7 +106,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                       {appInfo.downloads}
                     </div>
                     <p className="text-[11px] text-slate-400">
-                      {lang === 'hi' ? 'डाउनलोड्स' : 'Downloads'}
+                      {lang === 'hi' ? 'Downloads' : 'Downloads'}
                     </p>
                   </div>
 
@@ -116,7 +116,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                       <span>{appInfo.size}</span>
                     </div>
                     <p className="text-[11px] text-slate-400">
-                      {lang === 'hi' ? 'फाइल साइज' : 'APK Size'}
+                      {lang === 'hi' ? 'File Size' : 'APK Size'}
                     </p>
                   </div>
 
@@ -126,7 +126,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                       <span>3+</span>
                     </div>
                     <p className="text-[11px] text-slate-400">
-                      {lang === 'hi' ? 'एंड्रॉयड 6.0+' : 'Android 6.0+'}
+                      {lang === 'hi' ? 'Android 6.0+' : 'Android 6.0+'}
                     </p>
                   </div>
                 </div>
@@ -138,11 +138,11 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
               <div className="text-center md:text-left">
                 <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center justify-center md:justify-start gap-1.5 mb-1">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  {lang === 'hi' ? '100% सुरक्षित और वायरस फ्री APK' : '100% Verified Safe & Virus Free'}
+                  {lang === 'hi' ? '100% Safe & Virus Free APK' : '100% Verified Safe & Virus Free'}
                 </span>
                 <p className="text-xs text-slate-400">
                   {lang === 'hi' 
-                    ? 'बिना किसी विज्ञापन या बग के डायरेक्ट हाई-स्पीड डाउनलोड।' 
+                    ? 'Direct high-speed APK download with zero malware or ads.' 
                     : 'Direct high-speed APK download with zero malware.'}
                 </p>
               </div>
@@ -157,10 +157,10 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                   <Download className="w-6 h-6 animate-bounce text-white" />
                   <div className="text-left leading-tight">
                     <div className="text-base font-black tracking-wide text-white">
-                      {lang === 'hi' ? 'डाउनलोड APK (v2.4.0)' : 'DOWNLOAD APK'}
+                      {lang === 'hi' ? 'DOWNLOAD APK (v2.4.0)' : 'DOWNLOAD APK'}
                     </div>
                     <div className="text-[11px] font-normal text-blue-200">
-                      {appInfo.size} • {lang === 'hi' ? 'डायरेक्ट फाइल' : 'Direct Android File'}
+                      {appInfo.size} • {lang === 'hi' ? 'Direct File' : 'Direct Android File'}
                     </div>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                 >
                   <HelpCircle className="w-4 h-4 text-blue-400 mb-1" />
                   <span className="text-[10px] font-medium leading-tight">
-                    {lang === 'hi' ? 'कैसे इनस्टॉल करें' : 'Install Guide'}
+                    {lang === 'hi' ? 'Install Guide' : 'Install Guide'}
                   </span>
                 </button>
 
@@ -186,7 +186,7 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                 >
                   <QrCode className="w-4 h-4 text-indigo-400 mb-1" />
                   <span className="text-[10px] font-medium leading-tight">
-                    {lang === 'hi' ? 'QR कोड स्कैन' : 'Scan QR'}
+                    {lang === 'hi' ? 'Scan QR' : 'Scan QR'}
                   </span>
                 </button>
 
@@ -197,16 +197,16 @@ export const HeroDownload: React.FC<HeroDownloadProps> = ({
                 >
                   <Share2 className="w-4 h-4 text-purple-400 mb-1" />
                   <span className="text-[10px] font-medium leading-tight">
-                    {lang === 'hi' ? 'शेयर करें' : 'Share App'}
+                    {lang === 'hi' ? 'Share App' : 'Share App'}
                   </span>
                 </button>
               </div>
 
               {/* Security Badges Footer */}
               <div className="text-[10px] text-slate-400 text-center flex items-center justify-center gap-3 pt-1">
-                <span>✓ {lang === 'hi' ? 'गूगल प्ले प्रोटेक्ट टेस्टेड' : 'Google Play Protect Verified'}</span>
+                <span>✓ {lang === 'hi' ? 'Google Play Protect Verified' : 'Google Play Protect Verified'}</span>
                 <span>•</span>
-                <span>✓ {lang === 'hi' ? 'नो रूट रिक्वायर्ड' : 'No Root Needed'}</span>
+                <span>✓ {lang === 'hi' ? 'No Root Needed' : 'No Root Needed'}</span>
               </div>
             </div>
 

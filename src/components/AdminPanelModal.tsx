@@ -46,6 +46,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
   const [developer, setDeveloper] = useState(appInfo.developer);
   const [downloadUrl, setDownloadUrl] = useState(appInfo.downloadUrl);
   const [announcement, setAnnouncement] = useState(appInfo.announcement || '');
+  const [iconUrl, setIconUrl] = useState(appInfo.iconUrl || '');
 
   // Form states for description & release notes
   const [descEn, setDescEn] = useState(appInfo.description.en);
@@ -75,6 +76,19 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     }
   };
 
+  const handleLogoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setIconUrl(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSaveAppInfo = (e: React.FormEvent) => {
     e.preventDefault();
     onUpdateAppInfo({
@@ -86,6 +100,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
       developer,
       downloadUrl,
       announcement,
+      iconUrl,
     });
     setSaveSuccessMsg(true);
     setTimeout(() => setSaveSuccessMsg(false), 3000);
@@ -130,7 +145,20 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
         uploadedFileName: file.name,
         size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
       });
-      alert(lang === 'hi' ? `सफलतापूर्वक अपलोड किया गया: ${file.name}` : `APK File uploaded successfully: ${file.name}`);
+      alert(lang === 'hi' ? `APK File uploaded successfully: ${file.name}` : `APK File uploaded successfully: ${file.name}`);
+    }
+  };
+
+  const handleScreenshotFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setNewImgUrl(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -140,7 +168,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
 
     onAddScreenshot({
       title: { en: newTitleEn, hi: newTitleHi || newTitleEn },
-      description: { en: 'Custom design card uploaded by Admin.', hi: 'एडमिन द्वारा अपलोड किया गया फोटो कार्ड।' },
+      description: { en: 'Custom app screenshot uploaded by Admin.', hi: 'Custom app screenshot uploaded by Admin.' },
       imageUrl: newImgUrl,
       badge: 'Admin Upload',
       category: 'Player UI',
@@ -149,6 +177,8 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     setNewImgUrl('');
     setNewTitleEn('');
     setNewTitleHi('');
+    setSaveSuccessMsg(true);
+    setTimeout(() => setSaveSuccessMsg(false), 3000);
   };
 
   return (
@@ -170,7 +200,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
           </div>
           <div>
             <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
-              <span>{lang === 'hi' ? 'जै प्ले - एडमिन कंट्रोल पैनल' : 'Jai Play - Admin Manager'}</span>
+              <span>{lang === 'hi' ? 'ZabPlay - Admin Manager' : 'ZabPlay - Admin Manager'}</span>
               {isAdminLoggedIn && (
                 <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                   Logged In
@@ -179,7 +209,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
             </h3>
             <p className="text-xs text-slate-400">
               {lang === 'hi'
-                ? 'यहाँ से आप APK अपलोड कर सकते हैं, ऐप की डिटेल्स और फोटो कार्ड्स बदल सकते हैं।'
+                ? 'Upload new APK, manage store info, add photo cards, and update app version.'
                 : 'Upload new APK, manage store info, add photo cards, and update app version.'}
             </p>
           </div>
@@ -193,12 +223,12 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
             </div>
 
             <h4 className="text-base font-bold text-white">
-              {lang === 'hi' ? 'एडमिन पासकोड दर्ज करें' : 'Enter Admin Passcode'}
+              {lang === 'hi' ? 'Enter Admin Passcode' : 'Enter Admin Passcode'}
             </h4>
             <p className="text-xs text-slate-400">
               {lang === 'hi'
-                ? 'सिर्फ आप (एडमिन) ही ऐप को अपडेट या अपलोड कर सकते हैं। डिफ़ॉल्ट पिन 1234 है।'
-                : 'Only you (Admin) can upload or modify Jai Play details. Default PIN is 1234.'}
+                ? 'Only you (Admin) can upload or modify ZabPlay details. Default PIN is 1234.'
+                : 'Only you (Admin) can upload or modify ZabPlay details. Default PIN is 1234.'}
             </p>
 
             <div>
@@ -216,7 +246,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
               {pinError && (
                 <p className="text-xs text-rose-400 font-medium mt-1 flex items-center justify-center gap-1">
                   <AlertCircle className="w-3.5 h-3.5" />
-                  {lang === 'hi' ? 'गलत पासकोड! पुनः प्रयास करें।' : 'Incorrect PIN! Try default PIN 1234.'}
+                  {lang === 'hi' ? 'Incorrect PIN! Try default PIN 1234.' : 'Incorrect PIN! Try default PIN 1234.'}
                 </p>
               )}
             </div>
@@ -225,7 +255,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
               type="submit"
               className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm py-3 rounded-xl shadow-lg transition cursor-pointer"
             >
-              {lang === 'hi' ? 'एडमिन लॉगिन' : 'Unlock Admin Panel'}
+              {lang === 'hi' ? 'Unlock Admin Panel' : 'Unlock Admin Panel'}
             </button>
           </form>
         ) : (
@@ -243,7 +273,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 }`}
               >
                 <Upload className="w-3.5 h-3.5" />
-                <span>{lang === 'hi' ? 'APK व ऐप सेटिंग' : 'APK & App Settings'}</span>
+                <span>{lang === 'hi' ? 'APK & App Settings' : 'APK & App Settings'}</span>
               </button>
 
               <button
@@ -255,7 +285,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 }`}
               >
                 <ImageIcon className="w-3.5 h-3.5" />
-                <span>{lang === 'hi' ? 'फोटो कार्ड्स' : 'Photo Cards'}</span>
+                <span>{lang === 'hi' ? 'Photo Cards' : 'Photo Cards'}</span>
               </button>
 
               <button
@@ -267,7 +297,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>{lang === 'hi' ? 'विवरण व अपडेट्स' : 'Description & Notes'}</span>
+                <span>{lang === 'hi' ? 'Description & Notes' : 'Description & Notes'}</span>
               </button>
 
               <button
@@ -279,14 +309,14 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 }`}
               >
                 <KeyRound className="w-3.5 h-3.5" />
-                <span>{lang === 'hi' ? 'सुरक्षा पिन' : 'Admin Security'}</span>
+                <span>{lang === 'hi' ? 'Admin Security' : 'Admin Security'}</span>
               </button>
             </div>
 
             {saveSuccessMsg && (
               <div className="bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>{lang === 'hi' ? 'सफलतापूर्वक सेव कर दिया गया!' : 'Settings saved successfully!'}</span>
+                <span>{lang === 'hi' ? 'Settings saved successfully!' : 'Settings saved successfully!'}</span>
               </div>
             )}
 
@@ -294,44 +324,91 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
             {activeTab === 'app' && (
               <form onSubmit={handleSaveAppInfo} className="space-y-4">
                 
-                {/* File Upload Box */}
-                <div className="bg-slate-950 border border-dashed border-blue-500/40 rounded-2xl p-4 text-center">
-                  <Upload className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                  <h4 className="text-xs font-bold text-white mb-1">
-                    {lang === 'hi' ? 'नया APK फाइल अपलोड करें' : 'Upload New APK File'}
-                  </h4>
-                  <p className="text-[11px] text-slate-400 mb-3">
-                    {lang === 'hi'
-                      ? 'अपने कंप्यूटर या फोन से सीधे नया .apk फाइल चुनें:'
-                      : 'Select a direct .apk file from your device:'}
-                  </p>
-                  
-                  <input
-                    type="file"
-                    accept=".apk"
-                    onChange={handleFileUploadSim}
-                    className="hidden"
-                    id="apk-upload-input"
-                  />
-                  <label
-                    htmlFor="apk-upload-input"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2 rounded-xl cursor-pointer shadow-lg transition"
-                  >
-                    <Upload className="w-3.5 h-3.5" />
-                    <span>{lang === 'hi' ? 'APK फाइल चुनें' : 'Choose APK File'}</span>
-                  </label>
+                {/* Upload App Logo & APK File Dual Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* 1. App Logo / Icon Upload Box */}
+                  <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <img
+                          src={iconUrl || appInfo.iconUrl}
+                          alt="App Logo Preview"
+                          className="w-12 h-12 rounded-2xl bg-black border border-slate-700 object-cover shadow-lg"
+                        />
+                        <div>
+                          <h4 className="text-xs font-bold text-white">App Logo / Icon</h4>
+                          <p className="text-[11px] text-slate-400">
+                            Upload your official logo image
+                          </p>
+                        </div>
+                      </div>
 
-                  {appInfo.isApkUploaded && (
-                    <div className="mt-2 text-[11px] text-emerald-400 font-semibold">
-                      ✓ Current Uploaded File: {appInfo.uploadedFileName}
+                      <div className="space-y-2">
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">
+                            Choose Logo File from Phone/PC
+                          </label>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleLogoFileUpload}
+                            className="block w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-[11px] file:font-bold file:bg-emerald-600 file:text-white hover:file:bg-emerald-500 cursor-pointer"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">
+                            OR Logo Image URL
+                          </label>
+                          <input
+                            type="text"
+                            value={iconUrl}
+                            onChange={(e) => setIconUrl(e.target.value)}
+                            placeholder="https://..."
+                            className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  )}
+                  </div>
+
+                  {/* 2. APK File Upload Box */}
+                  <div className="bg-slate-950 border border-dashed border-blue-500/40 rounded-2xl p-4 text-center flex flex-col items-center justify-center">
+                    <Upload className="w-7 h-7 text-blue-400 mb-1" />
+                    <h4 className="text-xs font-bold text-white mb-1">
+                      {lang === 'hi' ? 'Upload New APK File' : 'Upload New APK File'}
+                    </h4>
+                    <p className="text-[11px] text-slate-400 mb-3">
+                      Select a direct .apk file from device:
+                    </p>
+                    
+                    <input
+                      type="file"
+                      accept=".apk"
+                      onChange={handleFileUploadSim}
+                      className="hidden"
+                      id="apk-upload-input"
+                    />
+                    <label
+                      htmlFor="apk-upload-input"
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2 rounded-xl cursor-pointer shadow-lg transition"
+                    >
+                      <Upload className="w-3.5 h-3.5" />
+                      <span>Choose APK File</span>
+                    </label>
+
+                    {appInfo.isApkUploaded && (
+                      <div className="mt-2 text-[11px] text-emerald-400 font-semibold">
+                        ✓ File: {appInfo.uploadedFileName}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1">
-                      App Name (ऐप का नाम)
+                      App Name
                     </label>
                     <input
                       type="text"
@@ -343,7 +420,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
 
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1">
-                      App Version (वर्जन)
+                      App Version
                     </label>
                     <input
                       type="text"
@@ -358,7 +435,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1">
-                      File Size (फाइल साइज)
+                      File Size
                     </label>
                     <input
                       type="text"
@@ -395,20 +472,20 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Custom Download URL / Link (या फाइल वेब लिंक)
+                    Custom Download URL / Link
                   </label>
                   <input
                     type="text"
                     value={downloadUrl}
                     onChange={(e) => setDownloadUrl(e.target.value)}
-                    placeholder="https://.../JaiPlay.apk"
+                    placeholder="https://.../ZabPlay.apk"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Announcement Banner Text (न्यूज/नोटिस)
+                    Announcement Banner Text
                   </label>
                   <input
                     type="text"
@@ -425,7 +502,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                     className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-lg cursor-pointer flex items-center gap-1.5"
                   >
                     <Save className="w-4 h-4" />
-                    <span>{lang === 'hi' ? 'सेव करें' : 'Save App Info'}</span>
+                    <span>{lang === 'hi' ? 'Save App Info' : 'Save App Info'}</span>
                   </button>
                 </div>
               </form>
@@ -436,43 +513,78 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
               <div className="space-y-6">
                 
                 {/* Form to Add New Photo Card */}
-                <form onSubmit={handleAddPhotoCard} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
+                <form onSubmit={handleAddPhotoCard} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-4">
                   <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
                     <Plus className="w-4 h-4 text-emerald-400" />
-                    <span>{lang === 'hi' ? 'नया डिजाइन फोटो कार्ड जोड़ें' : 'Upload New Design Photo Card'}</span>
+                    <span>{lang === 'hi' ? 'Upload New App Screenshot / Photo Card' : 'Upload New App Screenshot / Photo Card'}</span>
                   </h4>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="sm:col-span-2">
-                      <label className="block text-[11px] text-slate-400 mb-1">Photo Image URL *</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">Upload Photo from File Device</label>
                       <input
-                        type="url"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleScreenshotFileUpload}
+                        className="block w-full text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">OR Photo Image URL *</label>
+                      <input
+                        type="text"
                         required
                         value={newImgUrl}
                         onChange={(e) => setNewImgUrl(e.target.value)}
-                        placeholder="https://..."
-                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white"
+                        placeholder="https://images.unsplash.com/..."
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:border-blue-500"
                       />
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Title (English) *</label>
+                      <label className="block text-[11px] text-slate-400 mb-1">Title (English / Label) *</label>
                       <input
                         type="text"
                         required
                         value={newTitleEn}
                         onChange={(e) => setNewTitleEn(e.target.value)}
-                        placeholder="e.g. 4K Player"
-                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white"
+                        placeholder="e.g. 4K Ultra Player UI"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">Title (Hindi / Alt)</label>
+                      <input
+                        type="text"
+                        value={newTitleHi}
+                        onChange={(e) => setNewTitleHi(e.target.value)}
+                        placeholder="e.g. 4K Ultra Player Screen"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white"
                       />
                     </div>
                   </div>
 
+                  {newImgUrl && (
+                    <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800 flex items-center gap-3">
+                      <img src={newImgUrl} alt="Preview" className="w-12 h-16 object-cover rounded-lg bg-black border border-slate-700" />
+                      <div className="text-[11px] text-slate-300">
+                        <p className="font-bold text-emerald-400">Image Ready to Add</p>
+                        <p className="text-slate-400 truncate max-w-xs">{newImgUrl.slice(0, 40)}...</p>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="px-4 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow cursor-pointer"
+                      className="px-5 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow cursor-pointer flex items-center gap-1.5"
                     >
-                      {lang === 'hi' ? 'कार्ड जोड़ें' : 'Add Card'}
+                      <Plus className="w-4 h-4" />
+                      <span>{lang === 'hi' ? 'Save Screenshot to App Store' : 'Save Screenshot to App Store'}</span>
                     </button>
                   </div>
                 </form>
@@ -527,7 +639,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
-                    वर्जन में क्या नया है (प्रति पंक्ति एक बिंदु) - हिंदी
+                    What's New in Release (One bullet per line)
                   </label>
                   <textarea
                     rows={3}
@@ -551,7 +663,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
-                    पूरा विवरण - हिंदी
+                    Full Description
                   </label>
                   <textarea
                     rows={4}
@@ -567,7 +679,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                     className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-lg cursor-pointer flex items-center gap-1.5"
                   >
                     <Save className="w-4 h-4" />
-                    <span>{lang === 'hi' ? 'विवरण सेव करें' : 'Save Description'}</span>
+                    <span>{lang === 'hi' ? 'Save Description' : 'Save Description'}</span>
                   </button>
                 </div>
               </form>
@@ -577,7 +689,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
             {activeTab === 'security' && (
               <form onSubmit={handlePinChangeSubmit} className="space-y-4 max-w-md">
                 <h4 className="text-xs font-bold text-white">
-                  {lang === 'hi' ? 'एडमिन पासकोड (PIN) बदलें' : 'Change Admin Security PIN'}
+                  {lang === 'hi' ? 'Change Admin Security PIN' : 'Change Admin Security PIN'}
                 </h4>
 
                 <div>
@@ -607,14 +719,14 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                     onClick={onLogout}
                     className="px-4 py-2 rounded-xl text-xs font-bold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20"
                   >
-                    {lang === 'hi' ? 'एडमिन से लॉगआउट करें' : 'Logout Admin'}
+                    {lang === 'hi' ? 'Logout Admin' : 'Logout Admin'}
                   </button>
 
                   <button
                     type="submit"
                     className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-lg cursor-pointer"
                   >
-                    {lang === 'hi' ? 'पिन बदलें' : 'Update PIN'}
+                    {lang === 'hi' ? 'Update PIN' : 'Update PIN'}
                   </button>
                 </div>
               </form>

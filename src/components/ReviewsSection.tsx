@@ -54,10 +54,10 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full mb-2">
               <Star className="w-3.5 h-3.5 fill-amber-400" />
-              <span>{lang === 'hi' ? 'यूजर रेटिंग और रिव्यूज' : 'Ratings & User Reviews'}</span>
+              <span>{lang === 'hi' ? 'Ratings & User Reviews' : 'Ratings & User Reviews'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              {lang === 'hi' ? 'यूजर्स का अनुभव और समीक्षा' : 'Verified Ratings & Feedback'}
+              {lang === 'hi' ? 'Verified Ratings & Feedback' : 'Verified Ratings & Feedback'}
             </h2>
           </div>
 
@@ -66,7 +66,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg transition cursor-pointer self-start md:self-auto"
           >
             <MessageSquarePlus className="w-4 h-4" />
-            <span>{showReviewForm ? (lang === 'hi' ? 'फॉर्म बंद करें' : 'Close Form') : (lang === 'hi' ? 'अपना रिव्यू लिखें' : 'Write a Review')}</span>
+            <span>{showReviewForm ? (lang === 'hi' ? 'Close Form' : 'Close Form') : (lang === 'hi' ? 'Write a Review' : 'Write a Review')}</span>
           </button>
         </div>
 
@@ -81,7 +81,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
               ))}
             </div>
             <p className="text-xs text-slate-400 font-medium">
-              {lang === 'hi' ? '18,450+ सत्यापित रेटिंग्स पर आधारित' : 'Based on 18,450+ Verified Ratings'}
+              {lang === 'hi' ? 'Based on 18,450+ Verified Ratings' : 'Based on 18,450+ Verified Ratings'}
             </p>
           </div>
 
@@ -113,13 +113,13 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
           <form onSubmit={handleSubmit} className="mb-8 bg-slate-900 border border-blue-500/40 rounded-2xl p-6 shadow-2xl space-y-4">
             <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
               <MessageSquarePlus className="w-5 h-5 text-blue-400" />
-              <span>{lang === 'hi' ? 'जै प्ले ऐप के लिए अपना रिव्यू सबमिट करें' : 'Submit Your Review for Jai Play'}</span>
+              <span>{lang === 'hi' ? 'Submit Your Review for Jai Play' : 'Submit Your Review for Jai Play'}</span>
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1">
-                  {lang === 'hi' ? 'आपका नाम' : 'Your Name'} *
+                  {lang === 'hi' ? 'Your Name' : 'Your Name'} *
                 </label>
                 <input
                   type="text"
@@ -133,7 +133,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1">
-                  {lang === 'hi' ? 'स्टार रेटिंग दें' : 'Star Rating'}
+                  {lang === 'hi' ? 'Star Rating' : 'Star Rating'}
                 </label>
                 <div className="flex items-center gap-2 pt-1">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -156,7 +156,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1">
-                {lang === 'hi' ? 'रिव्यू का शीर्षक (Title)' : 'Review Title'}
+                {lang === 'hi' ? 'Review Title' : 'Review Title'}
               </label>
               <input
                 type="text"
@@ -169,7 +169,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1">
-                {lang === 'hi' ? 'आपकी समीक्षा (Comment)' : 'Detailed Feedback'} *
+                {lang === 'hi' ? 'Detailed Feedback' : 'Detailed Feedback'} *
               </label>
               <textarea
                 rows={3}
@@ -193,7 +193,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                 type="submit"
                 className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-lg"
               >
-                {lang === 'hi' ? 'सबमिट रिव्यू' : 'Post Review'}
+                {lang === 'hi' ? 'Post Review' : 'Post Review'}
               </button>
             </div>
           </form>
@@ -220,7 +220,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                           {rev.verifiedDownload && (
                             <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-emerald-500/20">
                               <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                              {lang === 'hi' ? 'सत्यापित' : 'Verified'}
+                              {lang === 'hi' ? 'Verified' : 'Verified'}
                             </span>
                           )}
                         </div>
@@ -253,7 +253,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   >
                     <ThumbsUp className="w-3.5 h-3.5" />
                     <span>
-                      {lang === 'hi' ? 'मददगार रहा' : 'Helpful'} ({rev.helpfulCount + addedHelpful})
+                      {lang === 'hi' ? 'Helpful' : 'Helpful'} ({rev.helpfulCount + addedHelpful})
                     </span>
                   </button>
 

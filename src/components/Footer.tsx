@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
               <p className="text-[11px] text-slate-400">
                 {lang === 'hi'
-                  ? 'आपका अपना भरोसेमंद एचडी 4K वीडियो प्लेयर'
+                  ? 'Official Android 4K Video Player APK Center'
                   : 'Official Android APK Download Center'}
               </p>
             </div>
@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({
               onClick={onOpenDownload}
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2 rounded-xl transition cursor-pointer"
             >
-              {lang === 'hi' ? 'ऐप डाउनलोड करें' : 'Download APK'}
+              {lang === 'hi' ? 'Download APK' : 'Download APK'}
             </button>
 
             <button
@@ -68,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Disclaimer & Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-slate-400">
           <p className="text-[11px]">
-            © {new Date().getFullYear()} {appInfo.developer}. {lang === 'hi' ? 'सर्वाधिकार सुरक्षित।' : 'All rights reserved.'}
+            © {new Date().getFullYear()} {appInfo.developer}. {lang === 'hi' ? 'All rights reserved.' : 'All rights reserved.'}
           </p>
 
           <div className="flex items-center gap-4 text-[11px]">
@@ -77,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({
               className="text-slate-400 hover:text-amber-400 transition cursor-pointer flex items-center gap-1"
             >
               <Settings className="w-3 h-3" />
-              <span>{lang === 'hi' ? 'एडमिन लॉगिन' : 'Admin Login'}</span>
+              <span>{lang === 'hi' ? 'Admin Login' : 'Admin Login'}</span>
             </button>
             <span>•</span>
             <span className="flex items-center gap-1 text-slate-400">

@@ -37,19 +37,19 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({
         </div>
 
         <h3 className="text-xl font-extrabold text-white mb-1">
-          {lang === 'hi' ? 'फोन से स्कैन करके डाउनलोड करें' : 'Scan QR Code to Download'}
+          {lang === 'hi' ? 'Scan QR Code to Download' : 'Scan QR Code to Download'}
         </h3>
         <p className="text-xs text-slate-400 mb-6">
           {lang === 'hi'
-            ? 'अपने मोबाइल कैमरे से यह QR कोड स्कैन करें और सीधे ऐप डाउनलोड करें।'
-            : 'Point your phone camera at the QR code below to download Jai Play directly on mobile.'}
+            ? 'Point your phone camera at the QR code below to download ZabPlay directly on mobile.'
+            : 'Point your phone camera at the QR code below to download ZabPlay directly on mobile.'}
         </p>
 
         {/* QR Image Box */}
         <div className="bg-white p-4 rounded-2xl inline-block shadow-xl border-4 border-slate-800 mb-6">
           <img
             src={qrImageUrl}
-            alt="Jai Play Download QR Code"
+            alt="ZabPlay Download QR Code"
             className="w-48 h-48 object-contain"
             referrerPolicy="no-referrer"
           />
@@ -64,7 +64,7 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({
           onClick={onClose}
           className="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-3 rounded-xl transition cursor-pointer"
         >
-          {lang === 'hi' ? 'बंद करें' : 'Close'}
+          {lang === 'hi' ? 'Close' : 'Close'}
         </button>
 
       </div>
