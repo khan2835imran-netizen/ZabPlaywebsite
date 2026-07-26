@@ -1,0 +1,6 @@
+{
+  "name": "Jai Play - All-in-One Video Player App Downloader",
+  "description": "Official app store and download hub for Jai Play HD Video Player with screenshot gallery, feature breakdown, app cards, admin manager, and direct APK downloader.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
