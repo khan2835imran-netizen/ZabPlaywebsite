@@ -135,17 +135,34 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
   const handleFileUploadSim = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Simulate uploading APK file or creating blob URL
-      const fileBlobUrl = URL.createObjectURL(file);
-      setDownloadUrl(fileBlobUrl);
-      setSize(`${(file.size / (1024 * 1024)).toFixed(1)} MB`);
-      onUpdateAppInfo({
-        downloadUrl: fileBlobUrl,
-        isApkUploaded: true,
-        uploadedFileName: file.name,
-        size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-      });
-      alert(lang === 'hi' ? `APK File uploaded successfully: ${file.name}` : `APK File uploaded successfully: ${file.name}`);
+      const fileSizeMb = `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const fileDataUrl = (event.target?.result as string) || URL.createObjectURL(file);
+        setDownloadUrl(fileDataUrl);
+        setSize(fileSizeMb);
+        onUpdateAppInfo({
+          downloadUrl: fileDataUrl,
+          isApkUploaded: true,
+          uploadedFileName: file.name,
+          size: fileSizeMb,
+        });
+        setSaveSuccessMsg(true);
+        setTimeout(() => setSaveSuccessMsg(false), 3000);
+      };
+      try {
+        reader.readAsDataURL(file);
+      } catch {
+        const fallbackUrl = URL.createObjectURL(file);
+        setDownloadUrl(fallbackUrl);
+        setSize(fileSizeMb);
+        onUpdateAppInfo({
+          downloadUrl: fallbackUrl,
+          isApkUploaded: true,
+          uploadedFileName: file.name,
+          size: fileSizeMb,
+        });
+      }
     }
   };
 

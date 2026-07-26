@@ -70,22 +70,6 @@ export const Header: React.FC<HeaderProps> = ({
             <span>{lang === 'hi' ? 'English' : 'Hindi'}</span>
           </button>
 
-          {/* Admin Control Trigger */}
-          <button
-            onClick={onOpenAdmin}
-            className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border transition cursor-pointer ${
-              isAdminLoggedIn
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 hover:bg-amber-500/30'
-                : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
-            }`}
-            title={lang === 'hi' ? 'Admin Panel' : 'Admin Panel'}
-          >
-            <Settings className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">
-              {isAdminLoggedIn ? (lang === 'hi' ? 'Admin Active' : 'Admin Active') : (lang === 'hi' ? 'Admin Mode' : 'Admin')}
-            </span>
-          </button>
-
           {/* Download App CTA Button */}
           <button
             onClick={onOpenDownload}

@@ -72,14 +72,6 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
 
           <div className="flex items-center gap-4 text-[11px]">
-            <button
-              onClick={onOpenAdmin}
-              className="text-slate-400 hover:text-amber-400 transition cursor-pointer flex items-center gap-1"
-            >
-              <Settings className="w-3 h-3" />
-              <span>{lang === 'hi' ? 'Admin Login' : 'Admin Login'}</span>
-            </button>
-            <span>•</span>
             <span className="flex items-center gap-1 text-slate-400">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               <span>100% Virus Free APK</span>

@@ -38,6 +38,40 @@ export default function App() {
   const [isQrCodeOpen, setIsQrCodeOpen] = useState(false);
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 
+  // Check URL hash (#admin), path (/admin), or keyboard shortcut for secret admin access
+  useEffect(() => {
+    const checkAdminRoute = () => {
+      const hash = window.location.hash.toLowerCase();
+      const pathname = window.location.pathname.toLowerCase();
+      const search = window.location.search.toLowerCase();
+
+      if (hash.includes('admin') || pathname.includes('/admin') || search.includes('admin=true')) {
+        setIsAdminModalOpen(true);
+      }
+    };
+
+    checkAdminRoute();
+
+    window.addEventListener('hashchange', checkAdminRoute);
+    window.addEventListener('popstate', checkAdminRoute);
+
+    // Secret Keyboard shortcut: Ctrl + Shift + A or Cmd + Shift + A
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        setIsAdminModalOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('hashchange', checkAdminRoute);
+      window.removeEventListener('popstate', checkAdminRoute);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   // Save to LocalStorage
   useEffect(() => {
     try {
@@ -198,7 +232,12 @@ export default function App() {
 
       <AdminPanelModal
         isOpen={isAdminModalOpen}
-        onClose={() => setIsAdminModalOpen(false)}
+        onClose={() => {
+          setIsAdminModalOpen(false);
+          if (window.location.hash.toLowerCase().includes('admin')) {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+        }}
         appInfo={appState.appInfo}
         screenshots={appState.screenshots}
         adminPin={appState.adminPin}
