@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Settings, Lock, X, Upload, Save, Image as ImageIcon, FileText, CheckCircle2, Shield, Trash2, KeyRound, AlertCircle, Plus } from 'lucide-react';
+import { Settings, Lock, X, Upload, Save, Image as ImageIcon, FileText, CheckCircle2, Shield, Trash2, KeyRound, AlertCircle, Plus, Loader2 } from 'lucide-react';
 import { AppInfo, ScreenshotCard } from '../types';
+import { uploadFileToServer } from '../lib/api';
 
 interface AdminPanelModalProps {
   isOpen: boolean;
@@ -64,6 +65,10 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
   const [newTitleEn, setNewTitleEn] = useState('');
   const [newTitleHi, setNewTitleHi] = useState('');
 
+  // Uploading state
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
+
   if (!isOpen) return null;
 
   const handlePinSubmit = (e: React.FormEvent) => {
@@ -76,16 +81,22 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     }
   };
 
-  const handleLogoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLogoFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setIconUrl(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
+      setIsUploading(true);
+      setUploadStatus(lang === 'hi' ? 'सर्वर पर लोगो अपलोड हो रहा है...' : 'Uploading Logo to server...');
+      const res = await uploadFileToServer(file);
+      setIsUploading(false);
+      setUploadStatus('');
+      if (res.success && res.url) {
+        setIconUrl(res.url);
+        onUpdateAppInfo({ iconUrl: res.url });
+        setSaveSuccessMsg(true);
+        setTimeout(() => setSaveSuccessMsg(false), 3000);
+      } else {
+        alert(res.error || 'Logo upload failed');
+      }
     }
   };
 
@@ -132,50 +143,47 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     }
   };
 
-  const handleFileUploadSim = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUploadSim = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const fileSizeMb = `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const fileDataUrl = (event.target?.result as string) || URL.createObjectURL(file);
-        setDownloadUrl(fileDataUrl);
-        setSize(fileSizeMb);
+      setIsUploading(true);
+      setUploadStatus(lang === 'hi' ? 'APK फाइल सर्वर पर सेव हो रही है...' : 'Saving APK file to server...');
+      const res = await uploadFileToServer(file);
+      setIsUploading(false);
+      setUploadStatus('');
+
+      if (res.success && res.url) {
+        const finalSize = res.size || `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+        setDownloadUrl(res.url);
+        setSize(finalSize);
         onUpdateAppInfo({
-          downloadUrl: fileDataUrl,
+          downloadUrl: res.url,
           isApkUploaded: true,
           uploadedFileName: file.name,
-          size: fileSizeMb,
+          size: finalSize,
         });
         setSaveSuccessMsg(true);
         setTimeout(() => setSaveSuccessMsg(false), 3000);
-      };
-      try {
-        reader.readAsDataURL(file);
-      } catch {
-        const fallbackUrl = URL.createObjectURL(file);
-        setDownloadUrl(fallbackUrl);
-        setSize(fileSizeMb);
-        onUpdateAppInfo({
-          downloadUrl: fallbackUrl,
-          isApkUploaded: true,
-          uploadedFileName: file.name,
-          size: fileSizeMb,
-        });
+        alert(lang === 'hi' ? `APK सर्वर पर सेव हो गया: ${file.name}` : `APK saved to server successfully: ${file.name}`);
+      } else {
+        alert(res.error || 'APK upload failed');
       }
     }
   };
 
-  const handleScreenshotFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleScreenshotFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setNewImgUrl(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
+      setIsUploading(true);
+      setUploadStatus(lang === 'hi' ? 'स्क्रीनशॉट अपलोड हो रहा है...' : 'Uploading screenshot image...');
+      const res = await uploadFileToServer(file);
+      setIsUploading(false);
+      setUploadStatus('');
+      if (res.success && res.url) {
+        setNewImgUrl(res.url);
+      } else {
+        alert(res.error || 'Screenshot image upload failed');
+      }
     }
   };
 
@@ -278,6 +286,14 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
         ) : (
           /* Step 2: Admin Dashboard when Logged In */
           <div className="space-y-6">
+            
+            {/* Uploading Progress Banner */}
+            {isUploading && (
+              <div className="bg-blue-600/20 border border-blue-500/40 p-3 rounded-xl flex items-center gap-3 text-blue-300 text-xs animate-pulse">
+                <Loader2 className="w-5 h-5 animate-spin text-blue-400" />
+                <span className="font-bold">{uploadStatus}</span>
+              </div>
+            )}
             
             {/* Tabs Header */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-800">

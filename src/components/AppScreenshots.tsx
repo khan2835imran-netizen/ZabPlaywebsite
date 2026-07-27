@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Maximize2, Sparkles, Image as ImageIcon, Plus, Trash2, X, Eye } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Maximize2, Sparkles, Image as ImageIcon, Plus, Trash2, X, Eye, Loader2 } from 'lucide-react';
 import { ScreenshotCard } from '../types';
+import { uploadFileToServer } from '../lib/api';
 
 interface AppScreenshotsProps {
   screenshots: ScreenshotCard[];
@@ -41,16 +42,19 @@ export const AppScreenshots: React.FC<AppScreenshotsProps> = ({
     }
   };
 
-  const handleScreenshotFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleScreenshotFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setNewImageUrl(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
+      setIsUploading(true);
+      const res = await uploadFileToServer(file);
+      setIsUploading(false);
+      if (res.success && res.url) {
+        setNewImageUrl(res.url);
+      } else {
+        alert(res.error || 'Failed to upload screenshot image');
+      }
     }
   };
 
@@ -380,10 +384,17 @@ export const AppScreenshots: React.FC<AppScreenshotsProps> = ({
                   </div>
                 </div>
 
-                {newImageUrl && (
+                {isUploading && (
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-2.5 rounded-xl flex items-center gap-2 text-xs text-blue-400">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Uploading photo to server...</span>
+                  </div>
+                )}
+
+                {newImageUrl && !isUploading && (
                   <div className="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center gap-3">
                     <img src={newImageUrl} alt="Preview" className="w-12 h-16 object-cover rounded-lg bg-black" />
-                    <span className="text-xs text-emerald-400 font-bold">Image loaded!</span>
+                    <span className="text-xs text-emerald-400 font-bold">Image Saved to Server!</span>
                   </div>
                 )}
 

@@ -13,6 +13,7 @@ import { DownloadProgressModal } from './components/DownloadProgressModal';
 import { QrCodeModal } from './components/QrCodeModal';
 import { AdminPanelModal } from './components/AdminPanelModal';
 import { Footer } from './components/Footer';
+import { fetchAppData, saveAppData } from './lib/api';
 
 const STORAGE_KEY = 'zab_play_app_store_v2';
 
@@ -31,6 +32,19 @@ export default function App() {
   });
 
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  // Load live server data on mount
+  useEffect(() => {
+    let isMounted = true;
+    fetchAppData().then((serverData) => {
+      if (isMounted && serverData) {
+        setAppState(serverData);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Modal States
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
@@ -72,10 +86,11 @@ export default function App() {
     };
   }, []);
 
-  // Save to LocalStorage
+  // Save to LocalStorage & Server
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      saveAppData(appState);
     } catch (e) {
       console.error('Failed to save state to localStorage', e);
     }
