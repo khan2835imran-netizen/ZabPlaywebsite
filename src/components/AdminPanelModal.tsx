@@ -85,17 +85,20 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     const file = e.target.files?.[0];
     if (file) {
       setIsUploading(true);
-      setUploadStatus(lang === 'hi' ? 'सर्वर पर लोगो अपलोड हो रहा है...' : 'Uploading Logo to server...');
-      const res = await uploadFileToServer(file);
-      setIsUploading(false);
-      setUploadStatus('');
-      if (res.success && res.url) {
-        setIconUrl(res.url);
-        onUpdateAppInfo({ iconUrl: res.url });
-        setSaveSuccessMsg(true);
-        setTimeout(() => setSaveSuccessMsg(false), 3000);
-      } else {
-        alert(res.error || 'Logo upload failed');
+      setUploadStatus(lang === 'hi' ? 'लोगो प्रोसेस हो रहा है...' : 'Processing logo image...');
+      try {
+        const res = await uploadFileToServer(file);
+        if (res.url) {
+          setIconUrl(res.url);
+          onUpdateAppInfo({ iconUrl: res.url });
+          setSaveSuccessMsg(true);
+          setTimeout(() => setSaveSuccessMsg(false), 3000);
+        }
+      } catch (err) {
+        console.error('Logo upload error:', err);
+      } finally {
+        setIsUploading(false);
+        setUploadStatus('');
       }
     }
   };
@@ -147,26 +150,27 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     const file = e.target.files?.[0];
     if (file) {
       setIsUploading(true);
-      setUploadStatus(lang === 'hi' ? 'APK फाइल सर्वर पर सेव हो रही है...' : 'Saving APK file to server...');
-      const res = await uploadFileToServer(file);
-      setIsUploading(false);
-      setUploadStatus('');
-
-      if (res.success && res.url) {
-        const finalSize = res.size || `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
-        setDownloadUrl(res.url);
-        setSize(finalSize);
-        onUpdateAppInfo({
-          downloadUrl: res.url,
-          isApkUploaded: true,
-          uploadedFileName: file.name,
-          size: finalSize,
-        });
-        setSaveSuccessMsg(true);
-        setTimeout(() => setSaveSuccessMsg(false), 3000);
-        alert(lang === 'hi' ? `APK सर्वर पर सेव हो गया: ${file.name}` : `APK saved to server successfully: ${file.name}`);
-      } else {
-        alert(res.error || 'APK upload failed');
+      setUploadStatus(lang === 'hi' ? 'APK फाइल सेव हो रही है...' : 'Saving APK file...');
+      try {
+        const res = await uploadFileToServer(file);
+        if (res.url) {
+          const finalSize = res.size || `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+          setDownloadUrl(res.url);
+          setSize(finalSize);
+          onUpdateAppInfo({
+            downloadUrl: res.url,
+            isApkUploaded: true,
+            uploadedFileName: file.name,
+            size: finalSize,
+          });
+          setSaveSuccessMsg(true);
+          setTimeout(() => setSaveSuccessMsg(false), 3000);
+        }
+      } catch (err) {
+        console.error('APK upload error:', err);
+      } finally {
+        setIsUploading(false);
+        setUploadStatus('');
       }
     }
   };
@@ -175,14 +179,17 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     const file = e.target.files?.[0];
     if (file) {
       setIsUploading(true);
-      setUploadStatus(lang === 'hi' ? 'स्क्रीनशॉट अपलोड हो रहा है...' : 'Uploading screenshot image...');
-      const res = await uploadFileToServer(file);
-      setIsUploading(false);
-      setUploadStatus('');
-      if (res.success && res.url) {
-        setNewImgUrl(res.url);
-      } else {
-        alert(res.error || 'Screenshot image upload failed');
+      setUploadStatus(lang === 'hi' ? 'फोटो प्रोसेस हो रही है...' : 'Processing photo...');
+      try {
+        const res = await uploadFileToServer(file);
+        if (res.url) {
+          setNewImgUrl(res.url);
+        }
+      } catch (err) {
+        console.error('Screenshot upload error:', err);
+      } finally {
+        setIsUploading(false);
+        setUploadStatus('');
       }
     }
   };

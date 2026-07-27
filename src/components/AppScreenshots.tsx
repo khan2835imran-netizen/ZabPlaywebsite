@@ -48,12 +48,15 @@ export const AppScreenshots: React.FC<AppScreenshotsProps> = ({
     const file = e.target.files?.[0];
     if (file) {
       setIsUploading(true);
-      const res = await uploadFileToServer(file);
-      setIsUploading(false);
-      if (res.success && res.url) {
-        setNewImageUrl(res.url);
-      } else {
-        alert(res.error || 'Failed to upload screenshot image');
+      try {
+        const res = await uploadFileToServer(file);
+        if (res.url) {
+          setNewImageUrl(res.url);
+        }
+      } catch (err) {
+        console.error('Screenshot upload error:', err);
+      } finally {
+        setIsUploading(false);
       }
     }
   };
